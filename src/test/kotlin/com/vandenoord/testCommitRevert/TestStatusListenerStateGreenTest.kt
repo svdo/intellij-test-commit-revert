@@ -8,10 +8,10 @@ import kotlin.test.assertEquals
 
 class TestStatusListenerStateGreenTest {
 
-    lateinit var preferencesFactory: StubPreferencesFactory
-    lateinit var p: Project
-    lateinit var commandRunner: CommandRunnerSpy
-    lateinit var green: TestStatusListenerStateGreen
+    private lateinit var preferencesFactory: StubPreferencesFactory
+    private lateinit var p: Project
+    private lateinit var commandRunner: CommandRunnerSpy
+    private lateinit var green: TestStatusListenerStateGreen
 
     @BeforeEach
     fun setUp() {

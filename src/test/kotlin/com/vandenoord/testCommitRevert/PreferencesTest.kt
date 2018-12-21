@@ -5,7 +5,7 @@ import com.intellij.openapi.components.StoragePathMacros
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-internal class PreferencesTest {
+class PreferencesTest {
     @Test fun itHasDefaultCommitCommand() {
         assertEquals(Preferences.GIT_COMMIT_COMMAND, Preferences().commitCommand)
     }
@@ -38,7 +38,6 @@ internal class PreferencesTest {
 
     private fun stateAnnotation(): State? {
         val annotations = Preferences().javaClass.declaredAnnotations
-        val annotation = annotations.first { a -> a is State } as? State
-        return annotation
+        return annotations.first { a -> a is State } as? State
     }
 }
