@@ -6,31 +6,31 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class TestStatusListenerStateGreenTest {
+class TestStatusListenerStateRedTest {
 
     private lateinit var preferencesFactory: StubPreferencesFactory
     private lateinit var p: Project
     private lateinit var commandRunner: CommandRunnerSpy
-    private lateinit var green: TestStatusListenerStateGreen
+    private lateinit var green: TestStatusListenerStateRed
 
     @BeforeEach
     fun setUp() {
         preferencesFactory = StubPreferencesFactory()
         p = DummyProject.getInstance()
         commandRunner = CommandRunnerSpy()
-        green = TestStatusListenerStateGreen(preferencesFactory, p, commandRunner)
+        green = TestStatusListenerStateRed(preferencesFactory, p, commandRunner)
     }
 
     @Test
     fun itRunsCommitCommandOnSuccess() {
         green.testSuiteFinished(true)
-        assertEquals("commit", commandRunner.runCommand)
+        assertEquals("revert", commandRunner.runCommand)
     }
 
     @Test
     fun itRunsRevertCommandOnFailure() {
         green.testSuiteFinished(false)
-        assertEquals("revert", commandRunner.runCommand)
+        assertEquals("commit", commandRunner.runCommand)
     }
 }
 
