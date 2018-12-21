@@ -24,12 +24,12 @@ class TestStatusListenerStateGreenTest {
     @Test
     fun itRunsCommitCommandOnSuccess() {
         green.testSuiteFinished(true)
-        assertEquals("commit", commandRunner.ranCommand)
+        assertEquals("commit", commandRunner.runCommand)
     }
 
     @Test
     fun itRunsRevertCommandOnFailure() {
         green.testSuiteFinished(false)
-        assertEquals("revert", commandRunner.ranCommand)
+        assertEquals("revert", commandRunner.runCommand)
     }
 }

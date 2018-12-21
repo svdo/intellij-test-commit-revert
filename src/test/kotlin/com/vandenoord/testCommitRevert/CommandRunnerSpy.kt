@@ -1,9 +1,9 @@
 package com.vandenoord.testCommitRevert
 
 class CommandRunnerSpy : CommandRunner {
-    var ranCommand = ""
+    var runCommand = ""
 
     override fun runCommand(command: String) {
-        this.ranCommand = command
+        this.runCommand = command
     }
 }
