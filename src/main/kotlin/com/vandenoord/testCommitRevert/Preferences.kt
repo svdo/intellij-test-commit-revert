@@ -10,8 +10,8 @@ import com.intellij.util.xmlb.XmlSerializerUtil
     name = "TestCommitRevertPreferences",
     storages = [ Storage(StoragePathMacros.WORKSPACE_FILE) ])
 class Preferences: PersistentStateComponent<Preferences> {
-    var commitCommand: String = DEFAULT_COMMIT_COMMAND
-    var revertCommand: String = DEFAULT_REVERT_COMMAND
+    var commitCommand: String = GIT_COMMIT_COMMAND
+    var revertCommand: String = GIT_REVERT_COMMAND
 
     override fun getState(): Preferences? {
         return this
@@ -22,7 +22,7 @@ class Preferences: PersistentStateComponent<Preferences> {
     }
 
     companion object {
-        const val DEFAULT_COMMIT_COMMAND = "git commit -a -m \"All green\""
-        const val DEFAULT_REVERT_COMMAND = "git reset --hard"
+        const val GIT_COMMIT_COMMAND = "git commit -a -m \"All green\""
+        const val GIT_REVERT_COMMAND = "git reset --hard"
     }
 }

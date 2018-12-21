@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test
 
 internal class PreferencesTest {
     @Test fun itHasDefaultCommitCommand() {
-        assertEquals(Preferences.DEFAULT_COMMIT_COMMAND, Preferences().commitCommand)
+        assertEquals(Preferences.GIT_COMMIT_COMMAND, Preferences().commitCommand)
     }
 
     @Test fun itHasDefaultRevertCommand() {
-        assertEquals(Preferences.DEFAULT_REVERT_COMMAND, Preferences().revertCommand)
+        assertEquals(Preferences.GIT_REVERT_COMMAND, Preferences().revertCommand)
     }
 
     @Test fun itCanGetState() {
