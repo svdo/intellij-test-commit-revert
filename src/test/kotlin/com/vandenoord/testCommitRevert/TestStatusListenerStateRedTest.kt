@@ -17,7 +17,7 @@ class TestStatusListenerStateRedTest {
     fun setUp() {
         preferencesFactory = StubPreferencesFactory()
         p = DummyProject.getInstance()
-        commandRunner = CommandRunnerSpy()
+        commandRunner = CommandRunnerSpy(p)
         green = TestStatusListenerStateRed(preferencesFactory, p, commandRunner)
     }
 

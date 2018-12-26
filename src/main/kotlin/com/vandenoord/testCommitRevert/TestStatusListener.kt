@@ -4,13 +4,14 @@ import com.intellij.execution.testframework.AbstractTestProxy
 import com.intellij.openapi.project.Project
 
 class TestStatusListener: com.intellij.execution.testframework.TestStatusListener() {
-    var commandRunner: CommandRunner = DefaultCommandRunner()
+    lateinit var commandRunner: CommandRunner
     var preferencesFactory = PreferencesFactory()
     lateinit var state: TestStatusListenerState
     lateinit var project: Project
 
     override fun testSuiteFinished(root: AbstractTestProxy?, project: Project) {
         this.project = project
+        this.commandRunner = DefaultCommandRunner(project)
         this.state = TestStatusListenerStateDisabled(preferencesFactory, project, commandRunner)
         testSuiteFinished(root)
     }

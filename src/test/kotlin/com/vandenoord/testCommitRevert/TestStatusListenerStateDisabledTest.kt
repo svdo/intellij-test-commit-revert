@@ -17,7 +17,7 @@ class TestStatusListenerStateDisabledTest {
     fun setUp() {
         preferencesFactory = StubPreferencesFactory()
         p = DummyProject.getInstance()
-        commandRunner = CommandRunnerSpy()
+        commandRunner = CommandRunnerSpy(p)
         disabled = TestStatusListenerStateDisabled(preferencesFactory, p, commandRunner)
     }
 

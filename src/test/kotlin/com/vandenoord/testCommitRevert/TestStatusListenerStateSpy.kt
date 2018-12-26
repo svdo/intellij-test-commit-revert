@@ -5,7 +5,7 @@ import com.intellij.openapi.project.Project
 
 class TestStatusListenerStateSpy(override val preferencesFactory: PreferencesFactory = PreferencesFactory(),
                                  override val project: Project = DummyProject.getInstance(),
-                                 override val commandRunner: CommandRunner = CommandRunnerSpy()
+                                 override val commandRunner: CommandRunner = CommandRunnerSpy(project)
 ) : TestStatusListenerState {
 
     var lastTestResult: Boolean? = null
