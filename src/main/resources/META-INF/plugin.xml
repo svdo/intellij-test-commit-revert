@@ -13,6 +13,12 @@
     <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <projectConfigurable groupId="tools"
+                             displayName="Test &amp;&amp; Commit || Revert"
+                             id="config.TestCommitRevert"
+                             instance="com.vandenoord.testCommitRevert.PreferencesForm" />
+        <projectService serviceInterface="com.vandenoord.testCommitRevert.Preferences"
+                        serviceImplementation="com.vandenoord.testCommitRevert.Preferences" />
     </extensions>
 
     <actions>
