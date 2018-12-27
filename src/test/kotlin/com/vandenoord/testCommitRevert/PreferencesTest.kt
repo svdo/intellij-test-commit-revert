@@ -15,16 +15,16 @@ class PreferencesTest {
     }
 
     @Test fun itCanGetState() {
-        val prefs = Preferences()
-        assertEquals(prefs, prefs.state)
+        val preferences = Preferences()
+        assertEquals(preferences, preferences.state)
     }
 
     @Test fun itCanLoadState() {
-        val prefs = Preferences()
+        val preferences = Preferences()
         val source = Preferences()
         source.commitCommand = "new command"
-        prefs.loadState(source)
-        assertEquals(source.commitCommand, prefs.commitCommand)
+        preferences.loadState(source)
+        assertEquals(source.commitCommand, preferences.commitCommand)
     }
 
     @Test fun stateAnnotationHasProperName() {

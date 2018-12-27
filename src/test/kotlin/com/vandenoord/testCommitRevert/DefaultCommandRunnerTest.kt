@@ -10,10 +10,10 @@ import java.io.File
 
 internal class DefaultCommandRunnerTest {
 
-    lateinit var runtime: Runtime
-    lateinit var project: Project
-    lateinit var currentDir: String
-    lateinit var runner: DefaultCommandRunner
+    private lateinit var runtime: Runtime
+    private lateinit var project: Project
+    private lateinit var currentDir: String
+    private lateinit var runner: DefaultCommandRunner
 
     @Before fun beforeEach() {
         mockRuntime()
@@ -23,15 +23,15 @@ internal class DefaultCommandRunnerTest {
     }
 
     private fun mockRuntime() {
-        runtime = mockk<Runtime>(relaxed = true)
-        var process: Process = mockk<Process>(relaxed = true)
+        runtime = mockk(relaxed = true)
+        val process: Process = mockk(relaxed = true)
         mockkStatic(Runtime::class)
         every { Runtime.getRuntime() } returns runtime
         every { runtime.exec(any<String>(), any(), any()) } returns process
     }
 
     private fun mockProject() {
-        project = mockk<Project>()
+        project = mockk()
         currentDir = System.getProperty("user.dir")
         every { project.basePath } returns currentDir
     }

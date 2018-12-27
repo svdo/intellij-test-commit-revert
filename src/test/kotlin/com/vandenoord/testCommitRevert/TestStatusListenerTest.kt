@@ -11,8 +11,8 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class TestStatusListenerTest {
-    lateinit var testStatusListener: TestStatusListener
-    lateinit var project: Project
+    private lateinit var testStatusListener: TestStatusListener
+    private lateinit var project: Project
 
     @BeforeEach fun setUp() {
         testStatusListener = TestStatusListener()
@@ -66,7 +66,7 @@ class TestStatusListenerTest {
     }
 
     private fun successfulTestResult(): SMTestProxy.SMRootTestProxy {
-        var tests = SMTestProxy.SMRootTestProxy()
+        val tests = SMTestProxy.SMRootTestProxy()
         val test = SMTestProxy("dummy", false, null)
         test.setFinished()
         tests.addChild(test)
@@ -74,7 +74,7 @@ class TestStatusListenerTest {
     }
 
     private fun failedTestResult(): SMTestProxy.SMRootTestProxy {
-        var tests = SMTestProxy.SMRootTestProxy()
+        val tests = SMTestProxy.SMRootTestProxy()
         val test = SMTestProxy("dummy", false, null)
         test.setTestFailed("failed", null, false)
         tests.addChild(test)

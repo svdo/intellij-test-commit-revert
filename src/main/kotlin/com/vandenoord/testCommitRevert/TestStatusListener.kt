@@ -4,8 +4,8 @@ import com.intellij.execution.testframework.AbstractTestProxy
 import com.intellij.openapi.project.Project
 
 class TestStatusListener: com.intellij.execution.testframework.TestStatusListener() {
-    lateinit var commandRunner: CommandRunner
-    var preferencesFactory = PreferencesFactory()
+    private lateinit var commandRunner: CommandRunner
+    private var preferencesFactory = PreferencesFactory()
     lateinit var state: TestStatusListenerState
     lateinit var project: Project
 
