@@ -27,20 +27,20 @@ class TestStatusListenerTest {
 
     @Test fun itCanChangeStateToGreen() {
         testStatusListener.testSuiteFinished(null, project)
-        testStatusListener.changeState(TestStatusListener.State.Green)
+        testStatusListener.changeState(PluginState.Green)
         assertNotNull(testStatusListener.state as? TestStatusListenerStateGreen)
     }
 
     @Test fun itCanChangeStateToRed() {
         testStatusListener.testSuiteFinished(null, project)
-        testStatusListener.changeState(TestStatusListener.State.Red)
+        testStatusListener.changeState(PluginState.Red)
         assertNotNull(testStatusListener.state as? TestStatusListenerStateRed)
     }
 
     @Test fun itCanChangeStateToDisabled() {
         testStatusListener.testSuiteFinished(null, project)
-        testStatusListener.changeState(TestStatusListener.State.Red)
-        testStatusListener.changeState(TestStatusListener.State.Disabled)
+        testStatusListener.changeState(PluginState.Red)
+        testStatusListener.changeState(PluginState.Disabled)
         assertNotNull(testStatusListener.state as? TestStatusListenerStateDisabled)
     }
 

@@ -41,15 +41,12 @@ class TestStatusListener: com.intellij.execution.testframework.TestStatusListene
         return testsRun == testsSucceeded
     }
 
-    fun changeState(state: State) {
-        when (state) {
-            State.Green -> this.state = TestStatusListenerStateGreen(preferencesFactory, project, commandRunner)
-            State.Red -> this.state = TestStatusListenerStateRed(preferencesFactory, project, commandRunner)
-            State.Disabled -> this.state = TestStatusListenerStateDisabled(preferencesFactory, project, commandRunner)
+    fun changeState(pluginState: PluginState) {
+        when (pluginState) {
+            PluginState.Green -> this.state = TestStatusListenerStateGreen(preferencesFactory, project, commandRunner)
+            PluginState.Red -> this.state = TestStatusListenerStateRed(preferencesFactory, project, commandRunner)
+            PluginState.Disabled -> this.state = TestStatusListenerStateDisabled(preferencesFactory, project, commandRunner)
         }
     }
 
-    enum class State {
-        Disabled, Green, Red
-    }
 }
