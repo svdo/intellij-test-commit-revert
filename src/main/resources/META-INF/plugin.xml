@@ -19,6 +19,7 @@
                              instance="com.vandenoord.testCommitRevert.PreferencesForm" />
         <projectService serviceInterface="com.vandenoord.testCommitRevert.Preferences"
                         serviceImplementation="com.vandenoord.testCommitRevert.Preferences" />
+        <statusBarWidgetProvider implementation="com.vandenoord.testCommitRevert.StatusBarWidgetProvider" />
     </extensions>
 
     <actions>
