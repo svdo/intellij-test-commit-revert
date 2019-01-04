@@ -11,73 +11,65 @@ import io.mockk.unmockkAll
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.awt.Component
-import java.awt.Graphics
 import javax.swing.Icon
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-class TestStatusListenerTest {
-    private lateinit var testStatusListener: TestStatusListener
+class TestResultHandlerTest {
+    private lateinit var resultHandler: TestResultHandler
     private lateinit var project: Project
 
     @BeforeEach fun setUp() {
         val i: Icon = mockk()
         mockkStatic(IconLoader::class)
         every { IconLoader.getIcon(any<String>()) } returns i
-        testStatusListener = TestStatusListener()
         project = DummyProject.getInstance()
+        resultHandler = TestResultHandler(project)
     }
 
     @AfterEach fun tearDown() {
         unmockkAll()
     }
 
-    @Test fun itConfiguresItself() {
-        testStatusListener.testSuiteFinished(null, project)
-        assertEquals(project, testStatusListener.project)
-        assertNotNull(testStatusListener.state as? TestStatusListenerStateDisabled)
-    }
-
     @Test fun itCanChangeStateToGreen() {
-        testStatusListener.testSuiteFinished(null, project)
-        testStatusListener.changeState(PluginState.Green)
-        assertNotNull(testStatusListener.state as? TestStatusListenerStateGreen)
+        resultHandler.testSuiteFinished(null)
+        resultHandler.changeState(PluginState.Green)
+        assertNotNull(resultHandler.state as? TestStatusListenerStateGreen)
     }
 
     @Test fun itCanChangeStateToRed() {
-        testStatusListener.testSuiteFinished(null, project)
-        testStatusListener.changeState(PluginState.Red)
-        assertNotNull(testStatusListener.state as? TestStatusListenerStateRed)
+        resultHandler.testSuiteFinished(null)
+        resultHandler.changeState(PluginState.Red)
+        assertNotNull(resultHandler.state as? TestStatusListenerStateRed)
     }
 
     @Test fun itCanChangeStateToDisabled() {
-        testStatusListener.testSuiteFinished(null, project)
-        testStatusListener.changeState(PluginState.Red)
-        testStatusListener.changeState(PluginState.Disabled)
-        assertNotNull(testStatusListener.state as? TestStatusListenerStateDisabled)
+        resultHandler.testSuiteFinished(null)
+        resultHandler.changeState(PluginState.Red)
+        resultHandler.changeState(PluginState.Disabled)
+        assertNotNull(resultHandler.state as? TestStatusListenerStateDisabled)
     }
 
     @Test fun itCallsState() {
         val stateSpy = TestStatusListenerStateSpy()
-        testStatusListener.state = stateSpy
-        testStatusListener.testSuiteFinished(successfulTestResult())
+        resultHandler.state = stateSpy
+        resultHandler.testSuiteFinished(successfulTestResult())
         assertNotNull(stateSpy.lastTestResult)
     }
 
     @Test fun itCallsStateWithTestResultTrue() {
         val stateSpy = TestStatusListenerStateSpy()
-        testStatusListener.state = stateSpy
-        testStatusListener.testSuiteFinished(successfulTestResult())
+        resultHandler.state = stateSpy
+        resultHandler.testSuiteFinished(successfulTestResult())
         assertTrue(stateSpy.lastTestResult!!)
     }
 
     @Test fun itCallsStateWithTestResultFalse() {
         val stateSpy = TestStatusListenerStateSpy()
-        testStatusListener.state = stateSpy
-        testStatusListener.testSuiteFinished(failedTestResult())
+        resultHandler.state = stateSpy
+        resultHandler.testSuiteFinished(failedTestResult())
         assertFalse(stateSpy.lastTestResult!!)
     }
 

@@ -1,5 +1,6 @@
 package com.vandenoord.testCommitRevert
 
+import com.intellij.execution.testframework.AbstractTestProxy
 import com.intellij.openapi.project.Project
 
 interface TestStatusListenerState {
